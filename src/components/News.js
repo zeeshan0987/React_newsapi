@@ -27,7 +27,7 @@ export class News extends Component {
 
     this.state = {
       articles: [],
-      loding: false,
+      loding: true,
       page: 1,
       totalResults :0,
     };
@@ -70,7 +70,7 @@ export class News extends Component {
   fetchMoreData = async () => {
     this.setState({page:this.state.page+1})
     const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=c37873bb96bf47fba7e806d996b70418&page=${this.state.page}&pageSize=${this.props.pageSize}`;
-    this.setState({ loding: true });
+    // this.setState({ loding: true });
     let deta = await fetch(url);
     let parsedDeta = await deta.json();
     this.setState({
@@ -83,12 +83,12 @@ export class News extends Component {
   };
   render() {
     return (
-      <div className="container my-3">
+      <>
         <h1 className="text-center">
           ZeeshanNews - Top {this.captal(this.props.category)} Headlines
         </h1>
 
-        {/* {this.state.loding &&<Spinner/>} */}
+        {this.state.loding &&<Spinner/>}
         <InfiniteScroll
           dataLength={this.state.articles.length}
           next={this.fetchMoreData}
@@ -118,9 +118,10 @@ export class News extends Component {
             })}
           </div>
           </div>
+          
         </InfiniteScroll>
         
-      </div>
+      </>
     );
   }
 }
