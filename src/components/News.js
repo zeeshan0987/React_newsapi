@@ -78,7 +78,7 @@ export class News extends Component {
   render() {
     return (
       <div className="container my-3">
-        <h1 className="text-center">ZeeshanNews - Top Headlines</h1>
+        <h1 className="text-center">ZeeshanNews - Top {this.captal(this.props.category)} Headlines</h1>
         
        
             {this.state.loding &&<Spinner/>}
