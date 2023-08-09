@@ -72,7 +72,7 @@ export class News extends Component {
  
   fetchMoreData = async () => {
     this.setState({page:this.state.page+1})
-    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=c37873bb96bf47fba7e806d996b70418&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=c37873bb96bf47fba7e806d996b70418&page=${this.state.page+1}&pageSize=${this.props.pageSize}`;
     
     let deta = await fetch(url);
     let parsedDeta = await deta.json();
@@ -87,7 +87,7 @@ export class News extends Component {
   render() {
     return (
       <>
-        <h1 className="text-center">
+        <h1 className="text-center" style={{margin:"35px 0px",marginTop:'90px'}}>
           ZeeshanNews - Top {this.captal(this.props.category)} Headlines
         </h1>
 
