@@ -1,12 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
 import tenor from './tenor.gif'
 
-export default class Spinner extends Component {
-  render() {
+const Spinner = ()=> {
+  
     return (
       <div className='text-center'>
         <img src={tenor} alt='loading'/>
       </div>
     )
-  }
+  
 }
+export default  Spinner
