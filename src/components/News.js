@@ -10,14 +10,14 @@ export class News extends Component {
     country: "in",
     pageSize: 9,
     category: "science",
-    // search:""
+    
   };
 
   static propTypes = {
     country: PropTypes.string,
     pageSize: PropTypes.number,
     category: PropTypes.string,
-    // search:PropTypes.string,
+    
   };
   captal = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -39,14 +39,12 @@ export class News extends Component {
     this.setState({ txt: event.target.value });
   }
   handleSubmit = async () => {
-    // alert('A name was submitted: ' + this.state.txt);
-    // event.preventDefault();
+    
     let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=c37873bb96bf47fba7e806d996b70418`;
     let deta = await fetch(url);
     let parsedDeta = await deta.json();
 
     this.setState({
-      // page: this.state.page - 1,
       articles: parsedDeta.articles,
     });
   };
@@ -70,7 +68,7 @@ export class News extends Component {
   fetchMoreData = async () => {
     this.setState({page:this.state.page+1})
     const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=c37873bb96bf47fba7e806d996b70418&page=${this.state.page}&pageSize=${this.props.pageSize}`;
-    // this.setState({ loding: true });
+    
     let deta = await fetch(url);
     let parsedDeta = await deta.json();
     this.setState({
