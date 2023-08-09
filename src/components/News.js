@@ -5,6 +5,7 @@ import Spinner from "./Spinner";
 import PropTypes from "prop-types";
 import InfiniteScroll from "react-infinite-scroll-component";
 
+
 export class News extends Component {
   static defaultProps = {
     country: "in",
@@ -49,16 +50,20 @@ export class News extends Component {
     });
   };
   async updateNews() {
+    this.props.setProgress(10);
     const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=c37873bb96bf47fba7e806d996b70418&page=${this.state.page}&pageSize=${this.props.pageSize}`;
     this.setState({ loding: true });
     let deta = await fetch(url);
+    this.props.setProgress(50);
     let parsedDeta = await deta.json();
+    // this.props.setProgress(70);
     this.setState({
       articles: parsedDeta.articles,
       totalResults: parsedDeta.totalResults,
       loding: false,
       
     });
+    this.props.setProgress(100);
   }
   async componentDidMount() {
     this.updateNews();
